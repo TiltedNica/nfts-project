@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class RegisterController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('auth.register');
+        return view('auth.login');
     }
 
     /**
@@ -28,25 +27,19 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => ['required', 'max:20'],
-            'email' => ['required', 'unique:users', 'email', 'max:60'],
-            'password' => ['required', 'confirmed', 'min:6'],
+        //
+        $this->validate($request, [
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
-        $data['password'] = bcrypt($data['password']); //Hashing password
-
-        User::create($data);
-
-//        auth()->attempt([
-//            'email' => $request->email,
-//            'password'=>$request->password
-//        ]);
-
-        auth()->attempt($request->only('email', 'password'));
+        if (!auth()->attempt($request->only('email', 'password'), $request->remember)){
+            return back()->with('message', 'Incorrect Credentials');
+        }
 
         return redirect()->route('home');
     }
+
 
     /**
      * Display the specified resource.

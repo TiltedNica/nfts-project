@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.auth')
 
 @section('title')
     Login
@@ -52,15 +52,26 @@
                 <h3 class="text-white">Or login with email</h3>
                 <div class="w-4/12 h-[1px] bg-[#343444]"></div>
             </div>
-            <form class="flex flex-col gap-y-[24px]" action="">
+            <form class="flex flex-col gap-y-[24px]" action="{{route('login')}}" method="post" novalidate>
+                @csrf
+
+                @if(session('message'))
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{session('message')}}</p>
+                @endif
                 <div class="flex flex-col gap-y-[24px]">
-                    <input class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px]" type="email" placeholder="Your Email Address">
-                    <input class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px]" type="password" placeholder="Your Password">
+                    <input class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px] text-white" type="email" placeholder="Your Email Address" name="email">
+                    @error('email')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
+                    @enderror
+                    <input class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px] text-white" type="password" placeholder="Your Password" name="password">
+                    @error('password')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
+                    @enderror
                 </div>
                 <div class="flex flex-col gap-y-[32px]">
                     <div class="flex justify-between">
                         <div class="flex gap-x-2">
-                            <input id="check" type="checkbox">
+                            <input id="check" type="checkbox" name="remember">
                             <label class="text-white" for="check">Remember me</label>
                         </div>
                         <a class="text-white" href="">Forgot Password?</a>
