@@ -34,7 +34,7 @@
         <nav class="">
             <ul class="flex list-none gap-x-10 text-white font-bold">
                 <li>
-                    <a href="">Home</a>
+                    <a href="{{route('home')}}">Home</a>
                 </li>
                 <li>
                     <a href="">Explore</a>

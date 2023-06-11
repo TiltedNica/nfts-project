@@ -8,25 +8,38 @@ use App\Models\User;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
-class CreateItemController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(User $user)
     {
+
+        $items = Item::where('user_id', $user->id)->get();
+
         $categories = Category::all()->keyBy('id');
         $collections = Collection::all()->keyBy('id');
 
-        return view('create', ['user' => $user, 'categories' => $categories, 'collections' => $collections]);
+        return view('wall', ['user' => $user, 'categories' => $categories, 'collections' => $collections, 'items'=>$items]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(User $user)
     {
-        //
+
+        $categories = Category::all()->keyBy('id');
+        $collections = Collection::all()->keyBy('id');
+
+        return view('create', ['user' => $user, 'categories' => $categories, 'collections' => $collections]);
     }
 
     /**
@@ -55,7 +68,7 @@ class CreateItemController extends Controller
             'user_id'=>auth()->user()->id
         ]);
 
-        return redirect()->route('create-item.store');
+        return redirect()->route('items.create');
     }
 
     /**

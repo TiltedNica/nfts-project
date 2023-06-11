@@ -5,6 +5,7 @@
     Create Item
 @endsection
 
+
 @push('styles')
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 @endpush
@@ -14,7 +15,7 @@
         <div class="flex flex-col gap-y-[12px] mt-[59px] items-center">
             <h1 class="font-bold text-[48px] text-white">Create Item</h1>
             <div class="flex gap-x-[12px] text-[#8A8AA0]">
-                <a>Home</a>
+                <a href="{{route('home')}}">Home</a>
                 <div>/</div>
                 <a>Pages</a>
                 <div>/</div>
@@ -25,17 +26,19 @@
 @endsection
 
 @section('main')
+
+
     <div>HELLO{{auth()->user()->name}}</div>
     <div class="flex mt-[80px] ms-[255px] mb-[80px]">
         <div class="me-[80px]">
             <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px]">Preview item</div>
-            <x-item-card></x-item-card>
+            <x-card/>
         </div>
         <div class="flex  flex-col">
             <div>
                 <div class="text-white font-bold text-[20px] leading-[26px]">Upload file</div>
                 <div>
-                    <form action="{{route('image.store')}}" method="post" enctype="multipart/form-data" id="dropzone" class="dropzone mt-[20px] mb-[24px] rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] w-[1000px] h-[102px] text-white" type="text" placeholder="Enter price for one item (ETH)">
+                    <form action="{{route('image.store')}}" method="post" enctype="multipart/form-data" id="dropzone" class="text-center dropzone mt-[20px] mb-[24px] rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] w-[1000px] h-[102px] text-white" type="text" placeholder="Enter price for one item (ETH)">
                         @csrf
                     </form>
                 </div>
@@ -48,17 +51,17 @@
                     <div class="text-[#5142FC]">Fixed Price</div>
                 </div>
                 <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px] mt-[24px]">Price</div>
-                <input name="price" class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[1000px] h-[46px] ps-[20px] py-[13px] text-white" type="text" placeholder="Enter price for one item (ETH)">
+                <input name="price" class="price rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[1000px] h-[46px] ps-[20px] py-[13px] text-white" type="number" placeholder="Enter price for one item (ETH)">
                 @error('price')
                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
                 @enderror
                 <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px] mt-[24px]">Title</div>
-                <input name="title" type="text" class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[1000px] h-[46px] ps-[20px] py-[13px] text-white" type="text" placeholder="Enter price for one item (ETH)">
+                <input name="title" type="text" class="title rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[1000px] h-[46px] ps-[20px] py-[13px] text-white" type="text" placeholder="Enter price for one item (ETH)">
                 @error('title')
                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
                 @enderror
                 <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px] mt-[24px]">Description</div>
-                <textarea name="description" id="" cols="30" class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[1000px] h-[80px] ps-[20px] py-[13px] text-white resize-none" rows="10" placeholder='e.g. “This is very limited item”'></textarea>
+                <textarea name="description" id="" cols="30" class="description rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[1000px] h-[80px] ps-[20px] py-[13px] text-white resize-none" rows="10" placeholder='e.g. “This is very limited item”'></textarea>
                 @error('description')
                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
                 @enderror
@@ -100,7 +103,7 @@
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
                     @enderror
                 </div>
-                <input type="submit" value="Create Item" class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 rounded-lg text-white">
+                <input type="submit" value="Create Item" class="bg-[#333340] hover:bg-[#5142FC] transition-colors cursor-pointer uppercase font-bold w-full p-3 rounded-lg text-white">
             </form>
         </div>
     </div>

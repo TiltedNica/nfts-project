@@ -5,7 +5,7 @@
 @endsection
 
 @section('header_action')
-    <div class="flex flex-col gap-y-[36px] mt-[117px] ms-[255px]">
+    <div class="flex flex-col gap-y-[36px] mt-[117px] ms-[255px] z-10">
         <div>
             <h1 class="text-[56px] font-bold text-white leading-tight">Discover, and collect<br>
                 <span class="text-gradient">extraordinary</span><br>
@@ -14,15 +14,15 @@
             <h2 class="text-white">Marketplace for monster character collections non fungible token NFTs</h2>
         </div>
         <div class="flex gap-x-[16px]">
-            <button
+            <a
                 class="text-white bg-gradient-to-bl from-[#E250E5]  to-[#4B50E6 rounded-[30px] w-[147px] h-[56px] flex items-center justify-center gap-x-[8px]">
                 <img src="{{asset('img/rocket.svg')}}" alt="">
                 Explore
-            </button>
-            <button class="bg-white rounded-[30px] w-[147px] h-[56px] flex items-center justify-center gap-x-[8px]">
+            </a>
+            <a href="{{route('items.create')}}" class="z-0 bg-white rounded-[30px] w-[147px] h-[56px] flex items-center justify-center gap-x-[8px]">
                 <img src="{{asset('img/create.svg')}}" alt="">
                 Create
-            </button>
+            </a>
         </div>
     </div>
 @endsection
@@ -78,11 +78,7 @@
         </div>
     </div>
     <div class="flex gap-x-[30px] mt-[32px] pb-[122px]">
-        <x-card/>
-        <x-card/>
-        <x-card/>
-        <x-card/>
-        <x-card/>
+
     </div>
 @endsection
 

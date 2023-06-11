@@ -21,6 +21,17 @@ if (document.getElementById('dropzone')) {
 
                 postedImage.previewElement.classList.add("dz-success", "dz-complete")
             }
+
+            this.on("addedfile", function (file) {
+                let reader = new FileReader();
+                reader.onload = function (event) {
+                    let imagePreview = document.querySelector(".image-preview");
+                    imagePreview.src = event.target.result;
+                    let test = document.querySelector('.dz-remove');
+                    test.style.color = 'red'
+                };
+                reader.readAsDataURL(file);
+            });
         }
     })
 
@@ -31,5 +42,33 @@ if (document.getElementById('dropzone')) {
 
     dropzone.on('removedfile', function (){
         document.querySelector('[name="img_item"]').value = "";
+        let imagePreview = document.querySelector(".image-preview");
+        imagePreview.src = "https://openseauserdata.com/files/3d825b936774e0ae3c8247613c91d436.png";
     })
 }
+
+const inputTitle = document.querySelector('.title');
+const titleBox = document.querySelector('.print-title');
+const inputPrice = document.querySelector('.price');
+const titlePrice = document.querySelector('.print-price');
+
+titleBox.innerHTML = 'Title'
+inputTitle.addEventListener('keyup', function (){
+    titleBox.innerHTML = inputTitle.value !== '' ? inputTitle.value : 'Title';
+})
+
+titlePrice.innerHTML = '4.89'
+inputPrice.addEventListener('keyup', function (){
+    titlePrice.innerHTML = inputPrice.value !== '' ? inputPrice.value : '4.89';
+})
+
+
+// if (value === ""){
+//     inputTitle.addEventListener('keyup', function (){
+//         titleBox.innerText = inputTitle.value
+//     })
+// } else if (titleBox.innerText === "") {
+//     titleBox.innerText = "Title"
+// }
+
+

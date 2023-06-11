@@ -5,18 +5,15 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\User;
 
-class Card extends Component
+class AuthorBanner extends Component
 {
     /**
      * Create a new component instance.
      */
-
-
     public function __construct()
     {
-
+        //
     }
 
     /**
@@ -24,6 +21,6 @@ class Card extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.card');
+        return view('components.author-banner');
     }
 }
