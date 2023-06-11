@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class RegisterController extends Controller
 {
@@ -32,9 +34,21 @@ class RegisterController extends Controller
             'name' => ['required', 'max:20'],
             'email' => ['required', 'unique:users', 'email', 'max:60'],
             'password' => ['required', 'confirmed', 'min:6'],
+            'desc_user'=>['required', 'max:100'],
+            'img_user'=>['required']
         ]);
 
         $data['password'] = bcrypt($data['password']); //Hashing password
+
+        $image = $request->file('img_user');
+        $imageName = Str::uuid().".".$image->extension();
+        $serverImage = Image::make($image);
+        $serverImage->fit(1000, 1000);
+
+        $imagePath = public_path('profiles').'/'.$imageName;
+        $serverImage->save($imagePath);
+
+        $data['img_user'] = $imageName;
 
         User::create($data);
 

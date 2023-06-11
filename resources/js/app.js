@@ -47,6 +47,7 @@ if (document.getElementById('dropzone')) {
     })
 }
 
+
 const inputTitle = document.querySelector('.title');
 const titleBox = document.querySelector('.print-title');
 const inputPrice = document.querySelector('.price');

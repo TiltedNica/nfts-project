@@ -4,6 +4,10 @@
     Register
 @endsection
 
+@push('styles')
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+@endpush
+
 @section('header_action')
     <div class="flex justify-center">
         <div class="flex flex-col gap-y-[12px] mt-[59px] items-center">
@@ -64,46 +68,57 @@
                 <h3 class="text-white">Or login with email</h3>
                 <div class="w-4/12 h-[1px] bg-[#343444]"></div>
             </div>
-            <form class="flex flex-col gap-y-[24px]" action="{{route('register')}}" method="POST">
-                @csrf
-                <div class="flex flex-col gap-y-[24px]">
-                    <input
-                        class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px] text-white"
-                        type="text" placeholder="Your Full Name" name="name">
-                    @error('name')
-                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
-                    @enderror
-                    <input
-                        class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px] text-white"
-                        type="email" placeholder="Your Email Address" name="email">
-                    @error('email')
-                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
-                    @enderror
-                    <input
-                        class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px] text-white"
-                        type="password" placeholder="Set Your Password" name="password">
-                    @error('password')
-                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
-                    @enderror
-                    <input
-                        class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px] text-white"
-                        type="password" placeholder="Confirm your password" id="password_confirmation"
-                        name="password_confirmation">
-                </div>
-                <div class="flex flex-col gap-y-[32px]">
-                    <div class="flex justify-between">
-                        <div class="flex gap-x-2">
-                            <input class="accent-transparent" id="check"  type="checkbox">
-                            <label class="text-white" for="check">Remember me</label>
-                        </div>
-                        <a class="text-white" href="">Forgot Password?</a>
+            <div class="flex gap-x-4">
+                <form class="flex flex-col gap-y-[24px]" action="{{route('register')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="flex flex-col gap-y-[24px]">
+                        <input
+                            class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px] text-white"
+                            type="text" placeholder="Your Full Name" name="name">
+                        @error('name')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
+                        @enderror
+                        <input
+                            class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px] text-white"
+                            type="email" placeholder="Your Email Address" name="email">
+                        @error('email')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
+                        @enderror
+                        <input
+                            class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px] text-white"
+                            type="text" placeholder="Profile Description" name="desc_user">
+                        @error('desc_user')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
+                        @enderror
+                        <input
+                            class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px] text-white"
+                            type="file" name="img_user" accept=".jpg, .png, .jpeg">
+                        <input
+                            class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px] text-white"
+                            type="password" placeholder="Set Your Password" name="password">
+                        @error('password')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
+                        @enderror
+                        <input
+                            class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[690px] ps-[20px] py-[13px] text-white"
+                            type="password" placeholder="Confirm your password" id="password_confirmation"
+                            name="password_confirmation">
                     </div>
-                    <button
-                        class="border-[2px] border-white rounded-[56px] w-[690px] h-[54px] flex items-center justify-center gap-x-[8px] text-white">
-                        Register
-                    </button>
-                </div>
-            </form>
+                    <div class="flex flex-col gap-y-[32px]">
+                        <div class="flex justify-between">
+                            <div class="flex gap-x-2">
+                                <input class="accent-transparent" id="check"  type="checkbox">
+                                <label class="text-white" for="check">Remember me</label>
+                            </div>
+                            <a class="text-white" href="">Forgot Password?</a>
+                        </div>
+                        <button
+                            class="border-[2px] border-white rounded-[56px] w-[690px] h-[54px] flex items-center justify-center gap-x-[8px] text-white">
+                            Register
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
