@@ -98,5 +98,6 @@
         @foreach($collections as $collection)
             <x-collection-card :collection="$collection"/>
         @endforeach
+
     </div>
 @endsection

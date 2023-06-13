@@ -9,11 +9,24 @@ class Collection extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'collection_name',
+        'user_id',
+        'img_collection',
+    ];
+
     public function items(){
         return $this->hasMany('App\Models\Item');
     }
 
     public function likes(){
         return $this->morphMany('App\Models\Like', 'likeable');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->select([
+            'name', 'email'
+        ]);
     }
 }

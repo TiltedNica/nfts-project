@@ -14,12 +14,12 @@
 {{--    </div>--}}
     <div class="flex gap-x-[67px]">
         <div class="flex gap-x-[10px] items-center">
-            <div class="bg-[#7A798A] w-[64px] h-[64px] rounded-[21px]"></div>
+            <img src="{{asset('profiles')."/".$collection->img_collection}}" class="bg-[#7A798A] w-[64px] h-[64px] rounded-[21px]"></img>
             <div class="flex flex-col gap-y-[2px]">
-                <div class="font-bold text-white leading-[26px]">{{$collection->name}}</div>
+                <div class="font-bold text-white leading-[26px]">{{$collection->collection_name}}</div>
                 <div class="flex gap-x-[6px]">
                     <div class="text-[#8A8AA0] leading-[20px]">Created by</div>
-                    <div class="text-[15px] text-white leading-[22px]">Ralph Garraway</div>
+                    <div class="text-[15px] text-white leading-[22px]">{{$collection->user->name}}</div>
                 </div>
             </div>
         </div>

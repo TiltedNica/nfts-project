@@ -93,7 +93,7 @@
                         <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px] mt-[24px]">Categories</div>
                         <select  class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[320px] h-[46px] ps-[20px] py-[13px] text-white" name="collection_id" id="">
                             @foreach($collections as $collection)
-                                <option value="{{$collection->id}}">{{$collection->name}}</option>
+                                <option value="{{$collection->id}}">{{$collection->collection_name}}</option>
                             @endforeach
                         </select>
                     </div>
