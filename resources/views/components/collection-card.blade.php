@@ -23,9 +23,12 @@
                 </div>
             </div>
         </div>
-        <button class="bg-[#14141F] w-[64px] h-[28px] flex items-center text-white justify-center rounded-[10px] gap-x-[5px]">
-            <img src="{{asset('img/heart white.svg')}}" alt="">
-            <div>100</div>
-        </button>
+        <form action="{{route('collection.likes.store', $collection)}}" method="post">
+            @csrf
+            <button class="bg-[#343444] rounded-[40px] w-[75px] h-[36px] flex gap-x-[6px] items-center justify-center">
+                <img src="{{asset('img/heart white.svg')}}" alt="">
+                <div class="text-[14px]">100</div>
+            </button>
+        </form>
     </div>
 </div>

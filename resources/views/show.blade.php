@@ -20,10 +20,14 @@
                                     <img src="{{asset('img/views.svg')}}" alt="">
                                     <div class="text-[14px]">225</div>
                                 </button>
-                                <button class="bg-[#343444] rounded-[40px] w-[75px] h-[36px] flex gap-x-[6px] items-center justify-center">
-                                    <img src="{{asset('img/heart white.svg')}}" alt="">
-                                    <div class="text-[14px]">100</div>
-                                </button>
+                                <form action="{{route('items.likes.store', $item)}}" method="post">
+                                    @csrf
+                                    <button class="bg-[#343444] rounded-[40px] w-[75px] h-[36px] flex gap-x-[6px] items-center justify-center">
+                                        <img src="{{asset('img/heart white.svg')}}" alt="">
+                                        <div class="text-[14px]">100</div>
+                                    </button>
+                                </form>
+
                             </div>
                             <div class="flex gap-x-[12px]">
                                 <button class="bg-[#343444] rounded-[40px] w-[36px] h-[36px] flex items-center justify-center">

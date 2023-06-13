@@ -5,6 +5,9 @@ use App\Http\Controllers\CreateCollectionController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\LikeCollectionController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\LikeItemController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileImageController;
@@ -47,6 +50,7 @@ Route::get('/{user:name}/items/{item}', [ItemController::class, 'show'])->name('
 
 Route::post('/images', [ImageController::class, 'store'])->name('image.store');
 
-
+Route::post('/items/{item}/likes', [LikeItemController::class, 'store'])->name('items.likes.store');
+Route::post('/collection/{collection}/likes', [LikeCollectionController::class, 'store'])->name('collection.likes.store');
 
 
