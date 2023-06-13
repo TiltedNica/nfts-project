@@ -11,9 +11,11 @@ class AuctionCard extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+
+    public $items;
+    public function __construct($items)
     {
-        //
+        $this->items = $items;
     }
 
     /**

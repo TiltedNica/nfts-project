@@ -1,6 +1,6 @@
 @if($items->count())
 
-    <div class="grid grid-cols-4 gap-x-[30px] gap-y-[40px] w-[1410px] ms-[255px] mb-[60px]">
+    <div class="grid grid-cols-4 gap-x-[30px] gap-y-[40px] w-[1410px] ms-[255px]">
         @foreach($items as $item)
             <div class="bg-[#343444] rounded-[20px] h-[511px] w-[330px] p-[20px] flex flex-col gap-y-[21px]">
                 <a href="{{route('items.show', ['item'=>$item, 'user'=>$user->name])}}">
@@ -31,7 +31,7 @@
                             <h4 class="text-[#8A8AA0] font-normal text-[13px] leading-[20px]">Current Bid</h4>
                             <div class="flex gap-x-[7px] items-center">
                                 <h2 class="text-white">{{$item->price}} ETH</h2>
-                                <h4 class="text-[#8A8AA0] font-normal text-[13px] leading-[20px]">= $12.246</h4>
+                                <h4 class="text-[#8A8AA0] font-normal text-[13px] leading-[20px]">= ${{$item->price*1736.29}}</h4>
                             </div>
                         </div>
                         <button class="flex bg-transparent w-[120px] h-[28px] items-center justify-center gap-x-[8px] rounded-[8px]">

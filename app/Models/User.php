@@ -49,6 +49,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Like');
     }
 
+    public function items(){
+        return $this->hasMany('App\Models\Item');
+    }
+
     public function collections(){
         return $this->hasMany(Collection::class);
     }

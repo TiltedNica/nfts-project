@@ -77,12 +77,8 @@
             <div class="bg-gradient-to-r from-[#E250E5] to-[#4B50E6] h-[1px]"></div>
         </div>
     </div>
-    <div class="flex gap-x-[30px] mt-[32px] pb-[122px]">
-        <x-auction-card/>
-        <x-auction-card/>
-        <x-auction-card/>
-        <x-auction-card/>
-        <x-auction-card/>
+    <div class="flex gap-x-[30px] mt-[32px] pb-[122px] ms-[255px]">
+            <x-auction-card :items="$items"/>
     </div>
 @endsection
 

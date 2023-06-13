@@ -59,8 +59,11 @@ class LikeItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, Item $item)
     {
-        //
+        $user_id = auth()->user()->id;
+//        dd($item->id);
+        $request->user()->likes()->where('user_id', $user_id)->where('likeable_id', $item->id)->where('likeable_type', 'items')->delete();
+        return back();
     }
 }

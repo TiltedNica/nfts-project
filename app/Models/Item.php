@@ -27,8 +27,13 @@ class Item extends Model
     public function user()
     {
         return $this->belongsTo(User::class)->select([
-            'name', 'email'
+            'name', 'email', 'img_user'
         ]);
+    }
+
+    public function checkLike(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id);
     }
 }
 

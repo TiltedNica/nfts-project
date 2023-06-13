@@ -10,7 +10,7 @@
         <h2 class="print-title text-white mb-[17px]"></h2>
         <div class="flex gap-x-[97px] items-center gap-y-[19px] mb-[19px]">
             <div class="flex gap-x-[12px] items-center">
-                <img src="{{asset('profiles')."/".auth()->user()->img_user}}" class="bg-[#7A798A] h-[44px] w-[44px] rounded-[15px]"></img>
+                <img src="{{asset('profiles')."/".$user->img_user}}" class="bg-[#7A798A] h-[44px] w-[44px] rounded-[15px]"></img>
                 <div>
                     <h4 class="text-[#8A8AA0] font-normal text-[13px] leading-[20px]">Creator</h4>
                     <h3 class="text-white font-bold text-[15px] leading-[22px]">{{auth()->user()->name}}</h3>

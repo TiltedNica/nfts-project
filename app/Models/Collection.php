@@ -29,4 +29,9 @@ class Collection extends Model
             'name', 'email'
         ]);
     }
+
+    public function checkLike(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id);
+    }
 }

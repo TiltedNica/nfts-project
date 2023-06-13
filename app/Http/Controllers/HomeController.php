@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
+use App\Models\Item;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,8 +20,9 @@ class HomeController extends Controller
     public function index()
     {
 
+        $items = Item::all();
         $collections = Collection::with('items')->get();
-        return view('home', ['collections'=> $collections]);
+        return view('home', ['collections'=> $collections, 'items'=>$items]);
     }
 
     /**
