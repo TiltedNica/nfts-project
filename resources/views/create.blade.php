@@ -33,7 +33,7 @@
     <div class="flex mt-[80px] ms-[255px] mb-[80px]">
         <div class="me-[80px]">
             <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px]">Preview item</div>
-            <x-card/>
+            <x-preview-card :user="$user" />
         </div>
         <div class="flex  flex-col">
             <div>

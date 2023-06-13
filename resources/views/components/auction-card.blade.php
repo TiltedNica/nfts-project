@@ -1,5 +1,5 @@
 <div class="grid-cols-4 grid gap-x-[30px]">
-    @foreach($items as $item)
+    @foreach($items->where('id', '<=', 4) as $item)
         <div class="bg-[#343444] rounded-[20px] h-[511px] w-[330px] p-[20px] flex flex-col gap-y-[21px]">
 
             <img src="{{asset('uploads')."/".$item->img_item}}" class="image-preview bg-[#7A798A] w-[290px] h-[290px] rounded-[20px] relative group block object-cover">

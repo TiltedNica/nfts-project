@@ -71,7 +71,7 @@
 
 @section('auctions')
     <div class="flex text-white pt-[60px] px-[255px] justify-between items-center">
-        <h1 class="font-bold text-[36px] leading-[44px]">Live Auctions</h1>
+        <h1 class="font-bold text-[36px] leading-[44px]">New Posts</h1>
         <div>
             <a href="#">Explore more</a>
             <div class="bg-gradient-to-r from-[#E250E5] to-[#4B50E6] h-[1px]"></div>

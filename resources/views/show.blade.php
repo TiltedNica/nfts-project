@@ -78,4 +78,18 @@
             </div>
         </div>
     </div>
+    <div class="">
+        <div class="flex text-white pt-[60px] px-[255px] justify-between items-center mb-[40px]">
+            <h1 class="font-bold text-[36px] leading-[44px]">More From This Author</h1>
+            <div>
+                <a href="#">Explore more</a>
+                <div class="bg-gradient-to-r from-[#E250E5] to-[#4B50E6] h-[1px]"></div>
+            </div>
+        </div>
+    </div>
+    <div class="ms-[255px] w-[1410px] mb-[80px]">
+{{--        {{dd($user->items->where('id', '!=', $item->id))}}--}}
+{{--        {{$filtered = $user->items->where('id', '!=', $item->id)}}--}}
+            <x-card :user="$user" :item="$item"/>
+    </div>
 @endsection
