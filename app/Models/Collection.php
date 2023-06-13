@@ -14,6 +14,6 @@ class Collection extends Model
     }
 
     public function likes(){
-        return $this->morphMany('Apps\Models\Like', 'likeable');
+        return $this->morphMany('App\Models\Like', 'likeable');
     }
 }

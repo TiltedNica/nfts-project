@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('likeable_id');
-            $table->string('like_type');
+            $table->string('likeable_type');
             $table->timestamps();
         });
     }

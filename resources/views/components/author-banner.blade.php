@@ -2,9 +2,8 @@
     <div class="h-[280px] w-[1410px] bg-[#313037] pt-[60px] flex gap-x-[225px]">
         <div class="ms-[355px] text-white">
             <h3 class="text-[18px] leading-[28px]">Author Profile</h3>
-            <h2 class="text-[36px] leading-[44px]">Trista Francis</h2>
-            <p class="leading-[22px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum obcaecati <br>
-                dignissimos quae quo ad iste ipsum officiis deleniti asperiores sit.</p>
+            <h2 class="text-[36px] leading-[44px]">{{$user->name}}</h2>
+            <p class="leading-[22px]">{{$user->desc_user}}</p>
         </div>
         <div>
             <ul class="flex gap-x-3">
@@ -41,5 +40,5 @@
         </nav>
     </div>
 
-    <img src="" alt="" class="bg-[#7A798A] rounded-[20px] absolute top-[40px] left-[40px] w-[274px] h-[274px]">
+    <img src="{{asset('profiles')."/".$user->img_user}}" alt="" class="bg-[#7A798A] rounded-[20px] absolute top-[40px] left-[40px] w-[274px] h-[274px]">
 </div>

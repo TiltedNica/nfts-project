@@ -20,6 +20,6 @@
 @endsection
 
 @section('main')
-        <x-author-banner/>
-        <x-item-card :items="$items"/>
+        <x-author-banner :user="$user"/>
+        <x-item-card :items="$items" :user="$user"/>
 @endsection

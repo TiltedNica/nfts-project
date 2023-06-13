@@ -35,11 +35,11 @@ class ItemController extends Controller
      */
     public function create(User $user)
     {
-
+        $users = User::all()->keyBy('id');
         $categories = Category::all()->keyBy('id');
         $collections = Collection::all()->keyBy('id');
 
-        return view('create', ['user' => $user, 'categories' => $categories, 'collections' => $collections]);
+        return view('create', ['user' => $user, 'categories' => $categories, 'collections' => $collections, 'users'=>$users]);
     }
 
     /**
@@ -74,9 +74,12 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($name, $item)
     {
-        //
+        $user = User::where('name', $name)->firstOrFail();
+        $item = Item::where('id', $item)->where('user_id', $user->id)->firstOrFail();
+
+        return view('show', ['item' => $item, 'user' => $user]);
     }
 
     /**

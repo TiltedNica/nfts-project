@@ -78,7 +78,11 @@
         </div>
     </div>
     <div class="flex gap-x-[30px] mt-[32px] pb-[122px]">
-
+        <x-auction-card/>
+        <x-auction-card/>
+        <x-auction-card/>
+        <x-auction-card/>
+        <x-auction-card/>
     </div>
 @endsection
 
@@ -89,5 +93,10 @@
             <a href="#">Explore more</a>
             <div class="bg-gradient-to-r from-[#E250E5] to-[#4B50E6] h-[1px]"></div>
         </div>
+    </div>
+    <div class="grid-cols-3 grid gap-[30px] ms-[255px] mt-[38px] mb-[80px] w-[1410px]">
+        @foreach($collections as $collection)
+            <x-collection-card :collection="$collection"/>
+        @endforeach
     </div>
 @endsection

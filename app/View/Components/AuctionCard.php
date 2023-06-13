@@ -5,20 +5,15 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Item;
 
-class ItemCard extends Component
+class AuctionCard extends Component
 {
     /**
      * Create a new component instance.
      */
-    public $user;
-    public $items;
-
-    public function __construct($items, $user)
+    public function __construct()
     {
-        $this->items = $items;
-        $this->user = $user;
+        //
     }
 
     /**
@@ -26,6 +21,6 @@ class ItemCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.item-card');
+        return view('components.auction-card');
     }
 }

@@ -35,9 +35,11 @@ Route::post('logout', [LogoutController::class, 'store'])->name('logout');
 
 Route::get('/homepage', [HomeController::class, 'index'])->name('home');
 
+
 Route::get('/{user:name}', [ItemController::class, 'index'])->name('items.index');
 Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
 Route::post('/create', [ItemController::class, 'store'])->name('create-item.store');
+Route::get('/{user:name}/items/{item}', [ItemController::class, 'show'])->name('items.show');
 
 Route::post('/images', [ImageController::class, 'store'])->name('image.store');
 
