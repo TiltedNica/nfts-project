@@ -1,8 +1,12 @@
 <div class="grid-cols-4 grid gap-x-[30px]">
-    @foreach($items->where('id', '<=', 4) as $item)
-        <div class="bg-[#343444] rounded-[20px] h-[511px] w-[330px] p-[20px] flex flex-col gap-y-[21px]">
 
-            <img src="{{asset('uploads')."/".$item->img_item}}" class="image-preview bg-[#7A798A] w-[290px] h-[290px] rounded-[20px] relative group block object-cover">
+
+    @foreach($items->where('id', '<=', 4) as $item)
+{{--        {{dd($item)}}--}}
+        <div class="bg-[#343444] rounded-[20px] h-[511px] w-[330px] p-[20px] flex flex-col gap-y-[21px]">
+            <a href="{{route('items.show', ['item'=>$item, 'user'=>$item->user])}}">
+                <img src="{{asset('uploads')."/".$item->img_item}}" class="image-preview bg-[#7A798A] w-[290px] h-[290px] rounded-[20px] relative group block object-cover">
+            </a>
             <button class="flex gap-x-[6px] w-[145px] h-[48px] rounded-[30px] bg-white items-center justify-center absolute top-[121px] right-[73px] hidden group-hover:flex group-hover:items-center group-hover:justify-center">
                 <img src="{{asset('img/Bag 2.svg')}}" alt="">
                 <span class="font-bold text-[15px] leading-[22px]">Buy</span>

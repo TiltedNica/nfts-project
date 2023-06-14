@@ -14,20 +14,21 @@ class ItemController extends Controller
      * Display a listing of the resource.
      */
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     public function index(User $user)
     {
 
-        $items = Item::where('user_id', $user->id)->get();
+//        $items = Item::where('user_id', $user->id)->get();
 
+        $items = Item::with('user')->where('user_id', $user->id)->get();
         $categories = Category::all()->keyBy('id');
         $collections = Collection::all()->keyBy('id');
 
-        return view('wall', ['user' => $user, 'categories' => $categories, 'collections' => $collections, 'items'=>$items]);
+        return view('author.wall', ['user' => $user, 'categories' => $categories, 'collections' => $collections, 'items'=>$items]);
     }
 
     /**
@@ -39,7 +40,7 @@ class ItemController extends Controller
         $categories = Category::all()->keyBy('id');
         $collections = Collection::all()->keyBy('id');
 
-        return view('create', ['user' => $user, 'categories' => $categories, 'collections' => $collections, 'users'=>$users]);
+        return view('posts.create', ['user' => $user, 'categories' => $categories, 'collections' => $collections, 'users'=>$users]);
     }
 
     /**
@@ -79,7 +80,7 @@ class ItemController extends Controller
         $user = User::where('name', $name)->firstOrFail();
         $item = Item::where('id', $item)->where('user_id', $user->id)->firstOrFail();
 
-        return view('show', ['item' => $item, 'user' => $user]);
+        return view('posts.show', ['item' => $item, 'user' => $user]);
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 
 @section('title')
     Profile
@@ -20,6 +20,6 @@
 @endsection
 
 @section('main')
-        <x-author-banner :user="$user"/>
-        <x-item-card :items="$items" :user="$user"/>
+    <x-author-banner :user="$user"/>
+    <x-item-card :items="$items" :user="$user"/>
 @endsection

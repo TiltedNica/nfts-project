@@ -25,13 +25,11 @@ class Collection extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class)->select([
-            'name', 'email'
-        ]);
+        return $this->belongsTo(User::class);
     }
 
-    public function checkLike(User $user)
+    public function checkLike($id)
     {
-        return $this->likes->contains('user_id', $user->id);
+        return $this->likes->contains('user_id', $id);
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CreateCollectionController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
@@ -27,24 +28,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+//Route::get('/', function () {
+//    return view('home');
+//});
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'store']);
 
 Route::post('logout', [LogoutController::class, 'store'])->name('logout');
 
 Route::get('/homepage', [HomeController::class, 'index'])->name('home');
-Route::get('/create-collection', [CollectionController::class, 'index'])->name('create-collection.index');
-Route::post('/create-collection', [CollectionController::class, 'store'])->name('create-collection.index');
+Route::get('/create-collection', [CollectionController::class, 'index'])->middleware('auth')->name('create-collection.index');
+Route::post('/create-collection', [CollectionController::class, 'store'])->name('create-collection.store');
 
 Route::get('/{user:name}', [ItemController::class, 'index'])->name('items.index');
-Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
+Route::get('/items/create', [ItemController::class, 'create'])->name('items.create')->middleware('auth');
 Route::post('/create', [ItemController::class, 'store'])->name('create-item.store');
 Route::get('/{user:name}/items/{item}', [ItemController::class, 'show'])->name('items.show');
 
@@ -54,5 +55,9 @@ Route::post('/items/{item}/likes', [LikeItemController::class, 'store'])->name('
 Route::delete('/items/{item}/likes', [LikeItemController::class, 'destroy'])->name('items.likes.destroy');
 Route::post('/collection/{collection}/likes', [LikeCollectionController::class, 'store'])->name('collection.likes.store');
 Route::delete('/collection/{collection}/likes', [LikeCollectionController::class, 'destroy'])->name('collection.likes.destroy');
+
+
+Route::post('/{user:name}/follow', [FollowerController::class,'index'])->name('user.follow');
+Route::delete('/{user:name}/follow', [FollowerController::class,'destroy'])->name('user.unfollow');
 
 

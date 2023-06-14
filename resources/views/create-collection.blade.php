@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 
 @section('header_action')
     <div class="flex justify-center">
@@ -17,7 +17,8 @@
 
 @section('main')
     <div class="flex gap-x-4 justify-center mt-[80px] mb-[80px]">
-        <form class="flex flex-col gap-y-[24px]" action="{{route('create-collection.index')}}" method="POST" enctype="multipart/form-data">
+        <form class="flex flex-col gap-y-[24px]" action="{{route('create-collection.store')}}" method="POST"
+              enctype="multipart/form-data">
             @csrf
             <div class="flex flex-col gap-y-[24px]">
                 <label class="text-white font-bold text-xl" for="">Name of Collection</label>

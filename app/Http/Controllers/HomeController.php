@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Collection;
 use App\Models\Item;
-use http\Client\Curl\User;
+use App\Models\User;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
@@ -13,16 +14,16 @@ class HomeController extends Controller
      * Display a listing of the resource.
      */
 
-    public function __construct()
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
+    public function index(User $user)
     {
-        $this->middleware('auth');
-    }
-    public function index()
-    {
-
-        $items = Item::all();
-        $collections = Collection::with('items')->get();
-        return view('home', ['collections'=> $collections, 'items'=>$items]);
+        $user = User::with('items')->get();
+        $items = Item::with('user')->get();
+        $collections = Collection::with('items', 'user')->get();
+        return view('home', ['collections'=> $collections, 'items'=>$items, 'user'=>$user]);
     }
 
     /**
