@@ -7,6 +7,37 @@
         </div>
         <div>
             <ul class="flex gap-x-3">
+                @auth()
+                    @if($user->id !== auth()->user()->id)
+                        @if(!$user->isFollowing(auth()->user()))
+                            <form action="{{route('user.follow', $user)}}" method="POST">
+                                @csrf
+                                <li>
+                                    <input type="submit" value="FOLLOW"  class="bg-white rounded-lg w-[80px] h-[40px] flex items-center justify-center font-bold cursor-pointer">
+
+                                </li>
+                            </form>
+                        @else
+                            <form action="{{route('user.unfollow', $user)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <li>
+                                    <input type="submit" value="UNFOLLOW"  class="bg-red-500 rounded-lg w-[100px] h-[40px] flex items-center justify-center font-bold cursor-pointer">
+
+                                </li>
+                            </form>
+                        @endif
+                    @endif
+                @endauth
+                <div class="bg-white rounded-lg h-[full] flex flex-col items-center justify-center font-bold ">
+                    <p>
+                        {{$user->followers()->count()}} Followers
+                    </p>
+                    <hr>
+                    <p>
+                        {{$user->followings()->count()}} Following
+                    </p>
+                </div>
                 <li>
                     <a class="bg-white rounded-lg w-[40px] h-[40px] flex items-center justify-center">
                         <img src="{{asset('img/faceebook-black.svg')}}" alt="">

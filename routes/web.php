@@ -32,6 +32,8 @@ use Illuminate\Support\Facades\Route;
 //    return view('home');
 //});
 
+Route::get('/', [HomeController::class, 'index']);
+
 Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
@@ -57,7 +59,7 @@ Route::post('/collection/{collection}/likes', [LikeCollectionController::class, 
 Route::delete('/collection/{collection}/likes', [LikeCollectionController::class, 'destroy'])->name('collection.likes.destroy');
 
 
-Route::post('/{user:name}/follow', [FollowerController::class,'index'])->name('user.follow');
-Route::delete('/{user:name}/follow', [FollowerController::class,'destroy'])->name('user.unfollow');
+Route::post('/{user:name}/follow', [FollowerController::class,'store'])->name('user.follow');
+Route::delete('/{user:name}/unfollow', [FollowerController::class,'destroy'])->name('user.unfollow');
 
 
