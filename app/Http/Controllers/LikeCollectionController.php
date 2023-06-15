@@ -6,6 +6,7 @@ use App\Models\Collection;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use const http\Client\Curl\AUTH_ANY;
 
 class LikeCollectionController extends Controller
@@ -66,8 +67,8 @@ class LikeCollectionController extends Controller
     {
 //        $request->user()->likes()->where('likeable_id', $collection->id)->orWhere('likeable_type', 'collection')->orWhere('user_id', auth()->user()->id)->delete();
 //        dd(auth()->user()->id);
-        $user_id = auth()->user()->id;
-        $request->user()->likes()->where('user_id', $user_id)->where('likeable_id', $collection->id)->where('likeable_type', 'collection')->delete();
+        $userId = Auth::id();
+        $request->user()->likes()->where('user_id', $userId)->where('likeable_id', $collection->id)->where('likeable_type', 'collection')->delete();
         return back();
     }
 }

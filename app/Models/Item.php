@@ -29,6 +29,10 @@ class Item extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function collection(){
+        return $this->belongsTo(Collection::class);
+    }
+
     public function checkLike(User $user)
     {
         return $this->likes->contains('user_id', $user->id);

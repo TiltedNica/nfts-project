@@ -1,10 +1,8 @@
-<div class="grid-cols-4 grid gap-x-[30px]">
-
-
-    @foreach($items->take(4) as $item)
-{{--        {{dd($item)}}--}}
+<div class="grid-cols-3 grid gap-[30px]">
+@foreach($items as $item)
+        {{--        {{dd($item)}}--}}
         <div class="bg-[#343444] rounded-[20px] h-[511px] w-[330px] p-[20px] flex flex-col gap-y-[21px]">
-            <a href="{{route('items.show', ['item'=>$item, 'user'=>$item->user])}}">
+            <a href="">
                 <img src="{{asset('uploads')."/".$item->img_item}}" class="image-preview bg-[#7A798A] w-[290px] h-[290px] rounded-[20px] relative group block object-cover">
             </a>
             <button class="flex gap-x-[6px] w-[145px] h-[48px] rounded-[30px] bg-white items-center justify-center absolute top-[121px] right-[73px] hidden group-hover:flex group-hover:items-center group-hover:justify-center">
@@ -35,7 +33,7 @@
                                 <h2 class="text-white print-price">{{$item->price}}</h2>
                                 <h2 class="text-white">ETH</h2>
                             </div>
-                            <h4 class="text-[#8A8AA0] font-normal text-[13px] leading-[20px]">= $12.246</h4>
+                            <h4 class="text-[#8A8AA0] font-normal text-[13px] leading-[20px]">= {{$item->price*1728}} USD</h4>
                         </div>
                     </div>
                     <button class="flex bg-[#14141F] w-[64px] h-[28px] items-center justify-center gap-x-[5px] rounded-[8px]">
@@ -45,5 +43,6 @@
                 </div>
             </div>
         </div>
-    @endforeach
+@endforeach
+
 </div>

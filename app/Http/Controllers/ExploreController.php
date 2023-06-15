@@ -2,28 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Item;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-
-class HomeController extends Controller
+class ExploreController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public function index()    {
 
-//    public function __construct()
-//    {
-//        $this->middleware('auth');
-//    }
-    public function index(User $user)
-    {
-        $user = User::with('items')->get();
         $items = Item::with('user', 'likes')->withCount('likes')->get();
-        $collections = Collection::with('items', 'user', 'likes')->withCount('likes')->get();
-        return view('home', ['collections'=> $collections, 'items'=>$items, 'user'=>$user]);
+        $collections = Collection::all();
+        $categories  = Category::all();
+        return view('/explore', ['collections' => $collections, 'categories'=>$categories, 'items'=>$items]);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CreateCollectionController;
+use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\HomeController;
@@ -41,6 +42,8 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'store']);
 
 Route::post('logout', [LogoutController::class, 'store'])->name('logout');
+
+Route::get('explore', [ExploreController::class, 'index'])->name('explore.index');
 
 Route::get('/homepage', [HomeController::class, 'index'])->name('home');
 Route::get('/create-collection', [CollectionController::class, 'index'])->middleware('auth')->name('create-collection.index');
