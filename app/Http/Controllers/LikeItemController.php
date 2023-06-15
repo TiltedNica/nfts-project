@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MyEvent;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LikeItemController extends Controller
 {
@@ -29,7 +31,25 @@ class LikeItemController extends Controller
     public function store(Request $request, Item $item)
     {
         $item->likes()->create(['user_id' => $request->user()->id]);
-        return back();
+
+
+
+//        return back();
+    }
+
+    public function like(Item $item)
+    {
+        if ($like = $item->likes()->where('user_id', Auth::id())->first()){
+            $like->delete();
+        }else{
+            $item->likes()->create([
+                'user_id'=>Auth::id(),
+            ]);
+        }
+        event(new MyEvent($item, Auth::user(),'item', $item->likes()->count()));
+        return response()->json([
+            "count"=>$item->likes()->count(),
+        ]);
     }
 
     /**
@@ -64,6 +84,10 @@ class LikeItemController extends Controller
         $user_id = auth()->user()->id;
 //        dd($item->id);
         $request->user()->likes()->where('user_id', $user_id)->where('likeable_id', $item->id)->where('likeable_type', 'items')->delete();
-        return back();
+        event(new MyEvent($item, Auth::user(), $item->likes()->count()));
+        return response()->json([
+            "count"=>$item->likes()->count(),
+        ]);
+//        return back();
     }
 }

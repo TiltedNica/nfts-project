@@ -11,6 +11,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     @vite('resources/js/register.js')
+    @vite('resources/js/bootstrap.js')
 </head>
 <body class="bg-[#14141F] h-screen">
 <header class="pb-[59px] bg-[#333340]">

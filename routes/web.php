@@ -57,9 +57,12 @@ Route::get('/{user:name}/items/{item}', [ItemController::class, 'show'])->name('
 Route::post('/images', [ImageController::class, 'store'])->name('image.store');
 
 Route::post('/items/{item}/likes', [LikeItemController::class, 'store'])->name('items.likes.store');
-Route::delete('/items/{item}/likes', [LikeItemController::class, 'destroy'])->name('items.likes.destroy');
-Route::post('/collection/{collection}/likes', [LikeCollectionController::class, 'store'])->name('collection.likes.store');
-Route::delete('/collection/{collection}/likes', [LikeCollectionController::class, 'destroy'])->name('collection.likes.destroy');
+Route::post('/items/{item}/likes', [LikeItemController::class, 'like'])->name('items.likes.store');
+
+//Route::delete('/items/{item}/likes', [LikeItemController::class, 'destroy'])->name('items.likes.destroy');
+Route::post('/items/{item}/likes', [LikeItemController::class, 'like'])->name('items.likes.like');
+Route::post('/collection/{collection}/likes', [LikeCollectionController::class, 'like'])->name('collection.likes.like');
+//Route::delete('/collection/{collection}/likes', [LikeCollectionController::class, 'destroy'])->name('collection.likes.destroy');
 
 
 Route::post('/{user:name}/follow', [FollowerController::class,'store'])->name('user.follow');
