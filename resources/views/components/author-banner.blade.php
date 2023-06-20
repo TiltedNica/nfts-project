@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Auth; @endphp
 <div class="w-[1410px] h-[354px] relative rounded-[12px] overflow-hidden mt-[80px] ms-[255px] mb-[60px]">
     <div class="h-[280px] w-[1410px] bg-[#313037] pt-[60px] flex gap-x-[225px]">
         <div class="ms-[355px] text-white">
@@ -8,12 +9,13 @@
         <div>
             <ul class="flex gap-x-3">
                 @auth()
-                    @if($user->id !== auth()->user()->id)
+                    @if($user->id !== Auth::id())
                         @if(!$user->isFollowing(auth()->user()))
                             <form action="{{route('user.follow', $user)}}" method="POST">
                                 @csrf
                                 <li>
-                                    <input type="submit" value="FOLLOW"  class="bg-white rounded-lg w-[80px] h-[40px] flex items-center justify-center font-bold cursor-pointer">
+                                    <input type="submit" value="FOLLOW"
+                                           class="bg-white rounded-lg w-[80px] h-[40px] flex items-center justify-center font-bold cursor-pointer">
 
                                 </li>
                             </form>
@@ -22,22 +24,14 @@
                                 @csrf
                                 @method('DELETE')
                                 <li>
-                                    <input type="submit" value="UNFOLLOW"  class="bg-red-500 rounded-lg w-[100px] h-[40px] flex items-center justify-center font-bold cursor-pointer">
+                                    <input type="submit" value="UNFOLLOW"
+                                           class="bg-red-500 rounded-lg w-[100px] h-[40px] flex items-center justify-center font-bold cursor-pointer">
 
                                 </li>
                             </form>
                         @endif
                     @endif
                 @endauth
-                <div class="bg-white rounded-lg h-[full] flex flex-col items-center justify-center font-bold ">
-                    <p>
-                        {{$user->followers()->count()}} Followers
-                    </p>
-                    <hr>
-                    <p>
-                        {{$user->followings()->count()}} Following
-                    </p>
-                </div>
                 <li>
                     <a class="bg-white rounded-lg w-[40px] h-[40px] flex items-center justify-center">
                         <img src="{{asset('img/faceebook-black.svg')}}" alt="">
@@ -58,6 +52,16 @@
                         <img src="{{asset('img/twitch-black.svg')}}" alt="">
                     </a>
                 </li>
+                <div
+                    class="bg-transparent rounded-lg h-[full] flex flex-col gap-y-[5px] items-center justify-center font-bold">
+                    <p class="bg-white rounded-[12px] p-[8px]">
+                        {{$user->followers()->count()}} Followers
+                    </p>
+                    <hr>
+                    <p class="bg-white rounded-[12px] p-[8px]">
+                        {{$user->followings()->count()}} Following
+                    </p>
+                </div>
             </ul>
         </div>
     </div>
@@ -71,5 +75,6 @@
         </nav>
     </div>
 
-    <img src="{{asset('profiles')."/".$user->img_user}}" alt="" class="bg-[#7A798A] rounded-[20px] absolute top-[40px] left-[40px] w-[274px] h-[274px]">
+    <img src="{{asset('profiles')."/".$user->img_user}}" alt=""
+         class="bg-[#7A798A] rounded-[20px] absolute top-[40px] left-[40px] w-[274px] h-[274px]">
 </div>

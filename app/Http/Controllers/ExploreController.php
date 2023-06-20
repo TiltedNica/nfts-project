@@ -14,7 +14,7 @@ class ExploreController extends Controller
      */
     public function index()    {
 
-        $items = Item::with('user', 'likes')->withCount('likes')->get();
+        $items = Item::with('user', 'likes')->withCount('likes')->orderBy('created_at', 'DESC')->get();
         $collections = Collection::all();
         $categories  = Category::all();
         return view('/explore', ['collections' => $collections, 'categories'=>$categories, 'items'=>$items]);
@@ -23,6 +23,31 @@ class ExploreController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+    public function filter(Request $request)
+    {
+        $query = Item::with('user', 'likes')->withCount('likes');
+
+
+
+        if ($request->filled('collections')) {
+            $collections = $request->input('collections');
+            $query->whereIn('collection_id', $collections);
+        }
+
+        if ($request->filled('categories')) {
+            $categories = $request->input('categories');
+            $query->whereIn('category_id', $categories);
+        }
+
+
+        $items = $query->get();
+
+        $collections = Collection::all();
+        $categories = Category::all();
+
+        return view('/explore', compact('collections', 'categories', 'items'));
+    }
     public function create()
     {
         //

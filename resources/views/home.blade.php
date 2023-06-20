@@ -1,8 +1,10 @@
+@php use App\Http\Controllers\CollectionController; @endphp
 @extends('layouts.main')
 
 @section('title')
     Main
 @endsection
+
 
 @section('header_action')
     <div class="flex flex-col gap-y-[36px] mt-[117px] ms-[255px]">
@@ -34,6 +36,7 @@
             </a>
         </div>
     </div>
+
 @endsection
 
 @section('main')
@@ -86,9 +89,47 @@
             <div class="bg-gradient-to-r from-[#E250E5] to-[#4B50E6] h-[1px]"></div>
         </div>
     </div>
-    <div class="flex gap-x-[30px] mt-[32px] pb-[122px] ms-[255px]">
+    <div class="flex mt-[32px] ms-[255px] w-[1440px]">
             <x-auction-card :items="$items"/>
     </div>
+    <div class="w-[149px] flex ms-[886px] justify-between pb-[74px] mt-[32px]">
+        <button class="sliderBtn" id="prev">
+            <img src="{{asset('img/arrow-left.svg')}}" alt="">
+        </button>
+        <img src="{{asset('img/Ellipse 30.svg')}}" alt="">
+        <img src="{{asset('img/Ellipse 30.svg')}}" alt="">
+        <img src="{{asset('img/Ellipse 30.svg')}}" alt="">
+        <img src="{{asset('img/Ellipse 30.svg')}}" alt="">
+        <button id="next" class="sliderBtn">
+            <img src="{{asset('img/arrow-right.svg')}}" alt="">
+        </button>
+    </div>
+    <script>
+        let buttons = Array.from(document.querySelectorAll('.sliderBtn'));
+        const carousel = document.querySelector(".carousel");
+        let imageIndex = 0
+        const firstImage = carousel.querySelectorAll('.image')[0];
+
+        buttons.forEach(function (button) {
+            button.addEventListener("click", function (e) {
+                console.log(firstImage)
+                let firstImgWidth = firstImage.clientWidth + 30;
+                if (button.id === "prev") {
+                    if (imageIndex === 0) {
+                        return
+                    }
+                    imageIndex -= 1;
+                    console.log(imageIndex)
+                    carousel.scrollLeft -= firstImgWidth;
+                //  && imageIndex < contents.length - 1
+                } else if (button.id === "next" && imageIndex >= 0) {
+                    imageIndex += 1;
+                    console.log(imageIndex)
+                    carousel.scrollLeft += firstImgWidth;
+                }
+            })
+        })
+    </script>
 @endsection
 
 @section('collections')
@@ -99,10 +140,35 @@
             <div class="bg-gradient-to-r from-[#E250E5] to-[#4B50E6] h-[1px]"></div>
         </div>
     </div>
+
+
     <div class="grid-cols-3 grid gap-[30px] ms-[255px] mt-[38px] mb-[80px] w-[1410px]">
         @foreach($collections as $collection)
             <x-collection-card :collection="$collection"/>
         @endforeach
 
     </div>
+@endsection
+
+@section('top_seller')
+    <div class="flex text-white pt-[60px] px-[255px] justify-between items-center">
+        <h1 class="font-bold text-[36px] leading-[44px]">Top Seller</h1>
+    </div>
+    <div>
+        <x-top-seller :user="$user"/>
+    </div>
+@endsection
+
+@section('today_picks')
+    <div class="flex text-white pt-[60px] px-[255px] justify-between items-center">
+        <h1 class="font-bold text-[36px] leading-[44px]">Today's Picks</h1>
+        <div>
+            <a href="{{route('explore.index')}}">Explore more</a>
+            <div class="bg-gradient-to-r from-[#E250E5] to-[#4B50E6] h-[1px]"></div>
+        </div>
+    </div>
+    <div class="mt-[40px] mb-[171px]">
+        <x-today-pick :todayItem="$todayItem"/>
+    </div>
+
 @endsection

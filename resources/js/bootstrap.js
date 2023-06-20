@@ -32,11 +32,13 @@ window.Echo = new Echo({
 });
 
 let channel = window.Echo.channel('my-channel');
-console.log('hola')
 
 channel.listen('.my-event', function (data){
     console.log(data)
+
     document.querySelector(`#${data.type}_show_${data.item.id}`).innerHTML = data.count;
+    // let card = document.querySelector(`#card${data.type}_show_${data.item.id}`).innerHTML = data.count;
+
     console.log(data.type)
 
 })

@@ -15,6 +15,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileImageController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Collection;
+use App\Models\Item;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Route;
 
@@ -56,12 +57,13 @@ Route::get('/{user:name}/items/{item}', [ItemController::class, 'show'])->name('
 
 Route::post('/images', [ImageController::class, 'store'])->name('image.store');
 
-Route::post('/items/{item}/likes', [LikeItemController::class, 'store'])->name('items.likes.store');
-Route::post('/items/{item}/likes', [LikeItemController::class, 'like'])->name('items.likes.store');
+Route::post('/filter', [ExploreController::class, 'filter'])->name('explore.filter');
+//
+//Route::post('/items/{item}/likes', [LikeItemController::class, 'store'])->name('items.likes.store');
+//Route::post('/items/{item}/likes', [LikeItemController::class, 'like'])->name('items.likes.store');
 
-//Route::delete('/items/{item}/likes', [LikeItemController::class, 'destroy'])->name('items.likes.destroy');
-Route::post('/items/{item}/likes', [LikeItemController::class, 'like'])->name('items.likes.like');
-Route::post('/collection/{collection}/likes', [LikeCollectionController::class, 'like'])->name('collection.likes.like');
+Route::post('/items/{item}/likes', [ItemController::class, 'like'])->name('items.likes.like');
+Route::post('/collection/{collection}/likes', [CollectionController::class, 'like'])->name('collection.likes.like');
 //Route::delete('/collection/{collection}/likes', [LikeCollectionController::class, 'destroy'])->name('collection.likes.destroy');
 
 

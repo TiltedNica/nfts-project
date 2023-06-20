@@ -5,6 +5,21 @@
     {{$item->title}}
 @endsection
 
+@section('header_action')
+    <div class="flex justify-center">
+        <div class="flex flex-col gap-y-[12px] mt-[59px] items-center">
+            <h1 class="font-bold text-[48px] text-white">Item Details {{$item->id}}</h1>
+            <div class="flex gap-x-[12px] text-[#8A8AA0]">
+                <a>Home</a>
+                <div>/</div>
+                <a>Pages</a>
+                <div>/</div>
+                <a class="text-white">Item Details {{$item->id}}</a>
+            </div>
+        </div>
+    </div>
+@endsection
+
 @section('main')
     <div class="flex gap-x-[100px] mt-[80px] ms-[255px] mb-[80px]">
         <div>
@@ -25,6 +40,7 @@
                                 </button>
                                 {{--                                {{dd($item->checkLike(auth()->user()))}}--}}
                                 @auth()
+
                                     <button
                                         id="like_{{$item->id}}"
                                         class="bg-[#343444] rounded-[40px] w-[75px] h-[36px] flex gap-x-[6px] items-center justify-center">
@@ -36,7 +52,7 @@
                                         </svg>
 
                                         <div id="item_show_{{$item->id}}"
-                                             class="text-[14px]">{{$item->likes()->count()}}</div>
+                                             class="text-[14px]">{{$item->likes_count}}</div>
                                     </button>
                                 @endauth
                             </div>
@@ -53,8 +69,11 @@
                         </div>
                     </div>
                     <div class="w-[295px] h-[68px] rounded-[16px] bg-[#343444] flex gap-x-[12px] items-center p-[12px]">
-                        <img src="{{asset('profiles')."/".$user->img_user}}"
-                             class="bg-[#7A798A] rounded-[15px] w-[44px] h-[44px]"></img>
+
+                        <a href="{{route('items.index', ['user'=>$item->user])}}">
+                            <img src="{{asset('profiles')."/".$user->img_user}}"
+                                 class="bg-[#7A798A] rounded-[15px] w-[44px] h-[44px]"></img>
+                        </a>
                         <div class="flex flex-col gap-y-[2px]">
                             <h3 class="text-[13px] leading-[20px] text-[#8A8AA0]">Created By</h3>
                             <h3 class="text-white font-bold text-[15px] leading-[22px]">{{$item->user->name}}</h3>
@@ -66,7 +85,7 @@
                 </p>
             </div>
             <div
-                class="bg-[#343444] rounded-[8px] flex gap-x-[83px] w-[295px] h-[50px] items-center py-[12px] px-[24px]">
+                class="bg-[#343444] rounded-[8px] flex justify-between w-[295px] h-[50px] items-center py-[12px] px-[24px]">
                 <h3 class="text-white text-[15px] leading-[26px]">Price</h3>
                 <div class="flex gap-x-[7px] items-center">
                     <h3 class="text-white font-bold text-[18px] leading-[26px]">{{$item->price}} ETH</h3>
@@ -79,22 +98,23 @@
         <div class="flex text-white pt-[60px] px-[255px] justify-between items-center mb-[40px]">
             <h1 class="font-bold text-[36px] leading-[44px]">More From This Author</h1>
             <div>
-                <a href="#">Explore more</a>
+                <a href="{{route('items.index', ['user'=>$item->user])}}">Explore more</a>
                 <div class="bg-gradient-to-r from-[#E250E5] to-[#4B50E6] h-[1px]"></div>
             </div>
         </div>
     </div>
+{{--    {{dd($items)}}--}}
     <div class="ms-[255px] w-[1410px] mb-[80px]">
         {{--        {{dd($user->items->where('id', '!=', $item->id))}}--}}
         {{--        {{$filtered = $user->items->where('id', '!=', $item->id)}}--}}
-        <x-card :user="$user" :item="$item"/>
+        <x-card :user="$user" :item="$item" :items="$items"/>
     </div>
     <script>
         let button = document.getElementById('heart')
-        document.querySelector('#like_{{$item->id}}').addEventListener('click', function (e) {
 
+        document.querySelector('#like_{{$item->id}}').addEventListener('click', function (e) {
             e.preventDefault();
-            fetch("{{action([LikeItemController::class, 'like'], compact('item'))}}", {
+            fetch("{{action([ItemController::class, 'like'], compact('item'))}}", {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json',
@@ -104,15 +124,10 @@
                     _token: "{{csrf_token()}}"
                 })
             }).then(response => response.json()).then(data => {
-                if (button.style.fill === 'red') {
-                    button.style.fill = 'none'
-                } else {
-                    button.style.fill = 'red'
-                }
+
                 {{--document.querySelector('#show_{{$item->id}}').innerHTML = data.count;--}}
 
             })
-
 
         })
     </script>

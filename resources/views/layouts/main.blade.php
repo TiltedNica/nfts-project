@@ -32,13 +32,13 @@
                 </defs>
             </svg>
         </div>
-        <nav class="">
+        <nav class="z-30">
             <ul class="flex list-none gap-x-10 text-white font-bold">
                 <li>
-                    <a href="">Home</a>
+                    <a href="{{route('home')}}">Home</a>
                 </li>
                 <li>
-                    <a href="">Explore</a>
+                    <a href="{{route('explore.index')}}">Explore</a>
                 </li>
                 <li>
                     <a href="">Activity</a>
@@ -140,6 +140,12 @@
 </section>
 <section>
     @yield('collections')
+</section>
+<section>
+    @yield('top_seller')
+</section>
+<section>
+    @yield('today_picks')
 </section>
 <footer class="bg-[#0D0D11] flex h-[362px] gap-x-[147px] items-center justify-center">
     <div class="flex items-start justify-center gap-x-[145px]">

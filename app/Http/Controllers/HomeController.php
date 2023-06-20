@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Collection;
 use App\Models\Item;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 
@@ -21,9 +22,11 @@ class HomeController extends Controller
     public function index(User $user)
     {
         $user = User::with('items')->get();
-        $items = Item::with('user', 'likes')->withCount('likes')->get();
+        $items = Item::with('user', 'likes')->withCount('likes')->orderBy('created_at', 'DESC')->get();
+        $todayItem = Item::with('user', 'likes')->withCount('likes')->whereDate('created_at', Carbon::today())->get();
+
         $collections = Collection::with('items', 'user', 'likes')->withCount('likes')->get();
-        return view('home', ['collections'=> $collections, 'items'=>$items, 'user'=>$user]);
+        return view('home', ['collections'=> $collections, 'items'=>$items, 'user'=>$user, 'todayItem'=>$todayItem]);
     }
 
     /**

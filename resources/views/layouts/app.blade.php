@@ -39,7 +39,7 @@
                     <a href="{{route('home')}}">Home</a>
                 </li>
                 <li>
-                    <a href="">Explore</a>
+                    <a href="{{route('explore.index')}}">Explore</a>
                 </li>
                 <li>
                     <a href="">Activity</a>

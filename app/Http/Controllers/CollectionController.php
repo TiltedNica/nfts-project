@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MyEvent;
 use App\Models\Collection;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Arr;
@@ -60,6 +62,20 @@ class CollectionController extends Controller
         return redirect()->route('create-collection.index');
     }
 
+    public function like(Collection $collection)
+    {
+        if ($like = $collection->likes()->where('user_id', Auth::id())->first()){
+            $like->delete();
+        }else{
+            $collection->likes()->create([
+                'user_id'=>Auth::id(),
+            ]);
+        }
+        event(new MyEvent($collection, Auth::user(),'collection', $collection->likes()->count()));
+        return response()->json([
+            "count"=>$collection->likes()->count(),
+        ]);
+    }
     /**
      * Display the specified resource.
      */

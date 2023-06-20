@@ -13,7 +13,7 @@
                 <div>/</div>
                 <a>Pages</a>
                 <div>/</div>
-                <a>Author</a>
+                <a class="text-white">Author</a>
             </div>
         </div>
     </div>

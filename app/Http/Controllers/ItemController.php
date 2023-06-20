@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MyEvent;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Models\User;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
 //    public function __construct()
 //    {
@@ -24,7 +24,7 @@ class ItemController extends Controller
 
 //        $items = Item::where('user_id', $user->id)->get();
 
-        $items = Item::with('user')->where('user_id', $user->id)->get();
+        $items = Item::with('likes', 'user')->withCount('likes')->where('user_id', $user->id)->get();
         $categories = Category::all()->keyBy('id');
         $collections = Collection::all()->keyBy('id');
 
@@ -72,15 +72,31 @@ class ItemController extends Controller
         return redirect()->route('items.create');
     }
 
+    public function like(Item $item)
+    {
+        if ($like = $item->likes()->where('user_id', Auth::id())->first()){
+            $like->delete();
+        }else{
+            $item->likes()->create([
+                'user_id'=>Auth::id(),
+            ]);
+
+        }
+        event(new MyEvent($item, Auth::user(),'item', $item->likes()->count()));
+        return response()->json([
+            "count"=>$item->likes()->count(),
+        ]);
+    }
     /**
      * Display the specified resource.
      */
     public function show($name, $item)
     {
-        $user = User::where('name', $name)->firstOrFail();
-        $item = Item::where('id', $item)->where('user_id', $user->id)->firstOrFail();
+        $user = User::query()->where('name', $name)->firstOrFail();
+        $items = Item::with('likes')->withCount('likes')->where('id','!=', $item)->where('user_id', $user->id)->get();
+        $item = Item::with('likes')->withCount('likes')->where('id', $item)->where('user_id', $user->id)->firstOrFail();
 
-        return view('posts.show', ['item' => $item, 'user' => $user]);
+        return view('posts.show', ['item' => $item, 'user' => $user, 'items'=>$items]);
     }
 
     /**

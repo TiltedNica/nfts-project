@@ -37,20 +37,7 @@ class LikeItemController extends Controller
 //        return back();
     }
 
-    public function like(Item $item)
-    {
-        if ($like = $item->likes()->where('user_id', Auth::id())->first()){
-            $like->delete();
-        }else{
-            $item->likes()->create([
-                'user_id'=>Auth::id(),
-            ]);
-        }
-        event(new MyEvent($item, Auth::user(),'item', $item->likes()->count()));
-        return response()->json([
-            "count"=>$item->likes()->count(),
-        ]);
-    }
+
 
     /**
      * Display the specified resource.

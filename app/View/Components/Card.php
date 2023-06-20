@@ -14,11 +14,13 @@ class Card extends Component
      */
 
     public $user;
+    public $items;
     public $item;
 
 
-    public function __construct($user, $item)
+    public function __construct($user, $item, $items)
     {
+        $this->items = $items;
         $this->user = $user;
         $this->item = $item;
 

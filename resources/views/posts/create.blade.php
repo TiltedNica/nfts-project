@@ -39,7 +39,7 @@
                 <div class="text-white font-bold text-[20px] leading-[26px]">Upload file</div>
                 <div>
                     <form action="{{route('image.store')}}" method="post" enctype="multipart/form-data" id="dropzone"
-                          class="text-center dropzone mt-[20px] mb-[24px] rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] w-[1000px] h-[102px] text-white"
+                          class="text-center dropzone mt-[20px] mb-[24px] rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] w-[320px] h-[202px]  text-white"
                           type="text" placeholder="Enter price for one item (ETH)">
                         @csrf
                     </form>
@@ -93,7 +93,7 @@
                         @enderror
                     </div>
                     <div>
-                        <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px] mt-[24px]">Collection
+                        <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px] mt-[24px]">Category
                         </div>
                         <select
                             class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[320px] h-[46px] ps-[20px] py-[13px] text-white"
@@ -104,7 +104,7 @@
                         </select>
                     </div>
                     <div>
-                        <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px] mt-[24px]">Categories
+                        <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px] mt-[24px]">Collection
                         </div>
                         <select
                             class="rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[320px] h-[46px] ps-[20px] py-[13px] text-white"

@@ -44,6 +44,7 @@ if (document.getElementById('dropzone')) {
         document.querySelector('[name="img_item"]').value = "";
         let imagePreview = document.querySelector(".image-preview");
         imagePreview.src = "https://openseauserdata.com/files/3d825b936774e0ae3c8247613c91d436.png";
+
     })
 }
 
@@ -62,6 +63,8 @@ titlePrice.innerHTML = '4.89'
 inputPrice.addEventListener('keyup', function (){
     titlePrice.innerHTML = inputPrice.value !== '' ? inputPrice.value : '4.89';
 })
+
+
 
 
 // if (value === ""){
