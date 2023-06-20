@@ -1,7 +1,7 @@
 @php use App\Http\Controllers\ItemController; @endphp
 @if($items->count())
 
-    <div class="grid grid-cols-4 gap-x-[30px] gap-y-[40px] w-[1410px] ms-[255px] mb-[174px]">
+    <div class="grid 2xl:grid-cols-4 grid-cols-3 gap-x-[30px] gap-y-[40px] w-[1410px] ms-[60px] 2xl:ms-[255px] mb-[174px]">
         @foreach($items as $item)
 {{--            {{dd($item->user()->name)}}--}}
             <div class="bg-[#343444] rounded-[20px] w-[330px] p-[20px] flex flex-col gap-y-[21px]">

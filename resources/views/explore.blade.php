@@ -16,7 +16,7 @@
 @endsection
 
 @section('main')
-    <div class="flex ms-[255px] mt-[80px] me-[260px]">
+    <div class="flex 2xl:ms-[255px] ms-[120px] mt-[80px] 2xl:me-[260px]">
         <aside class="text-white w-[280px] flex flex-col gap-y-[10px]">
             <form action="{{ route('explore.filter') }}" method="post">
                 @csrf
@@ -47,7 +47,7 @@
             </form>
         </aside>
 
-        <div class="w[1071px]">
+        <div class="2xl:w-[1071px]">
             <x-explorer-card :items="$items" />
         </div>
     </div>

@@ -1,5 +1,5 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
-<div class="w-[1410px] h-[354px] relative rounded-[12px] overflow-hidden mt-[80px] ms-[255px] mb-[60px]">
+<div class="w-[1410px] h-[354px] relative rounded-[12px] overflow-hidden mt-[80px] ms-[60px] 2xl:ms-[255px] mb-[60px]">
     <div class="h-[280px] w-[1410px] bg-[#313037] pt-[60px] flex gap-x-[225px]">
         <div class="ms-[355px] text-white">
             <h3 class="text-[18px] leading-[28px]">Author Profile</h3>

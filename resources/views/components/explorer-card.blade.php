@@ -1,5 +1,5 @@
 @php use App\Http\Controllers\ItemController; @endphp
-<div class="grid-cols-3 grid gap-[30px]">
+<div class="grid-cols-3 grid 2xl:gap-[30px] gap-[50px] mb-[80px]">
 @foreach($items as $item)
         {{--        {{dd($item)}}--}}
         <div class="bg-[#343444] rounded-[20px] w-[330px] p-[20px] flex flex-col gap-y-[21px]">

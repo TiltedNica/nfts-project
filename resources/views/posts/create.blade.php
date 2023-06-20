@@ -28,8 +28,8 @@
 
 @section('main')
 
-    <div>HELLO{{auth()->user()->name}}</div>
-    <div class="flex mt-[80px] ms-[255px] mb-[80px]">
+
+    <div class="flex mt-[80px] ms-[120px] 2xl:ms-[255px] mb-[80px]">
         <div class="me-[80px]">
             <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px]">Preview item</div>
             <x-preview-card :user="$user"/>
@@ -54,26 +54,26 @@
                 </div>
                 <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px] mt-[24px]">Price</div>
                 <input name="price"
-                       class="price rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[1000px] h-[46px] ps-[20px] py-[13px] text-white"
+                       class="price rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[800px] 2xl:w-[1000px] h-[46px] ps-[20px] py-[13px] text-white"
                        type="number" placeholder="Enter price for one item (ETH)">
                 @error('price')
                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
                 @enderror
                 <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px] mt-[24px]">Title</div>
                 <input name="title" type="text"
-                       class="title rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[1000px] h-[46px] ps-[20px] py-[13px] text-white"
+                       class="title rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[800px] 2xl:w-[1000px] h-[46px] ps-[20px] py-[13px] text-white"
                        type="text" placeholder="Enter price for one item (ETH)">
                 @error('title')
                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
                 @enderror
                 <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px] mt-[24px]">Description</div>
                 <textarea name="description" id="" cols="30"
-                          class="description rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[1000px] h-[80px] ps-[20px] py-[13px] text-white resize-none"
+                          class="description rounded-[8px] bg-transparent placeholder-[#8A8AA0] border border-[#343444] flex justify-center text-left w-[800px] 2xl:w-[1000px] h-[80px] ps-[20px] py-[13px] text-white resize-none"
                           rows="10" placeholder='e.g. “This is very limited item”'></textarea>
                 @error('description')
                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
                 @enderror
-                <div class="grid-cols-3 grid">
+                <div class="2xl:grid-cols-3 grid-cols-2 grid">
                     <div>
                         <div class="text-white font-bold text-[20px] leading-[26px] mb-[20px] mt-[24px]">Royalties</div>
                         <input name="royalties"
@@ -122,7 +122,7 @@
                     @enderror
                 </div>
                 <input type="submit" value="Create Item"
-                       class="bg-[#333340] hover:bg-[#5142FC] transition-colors cursor-pointer uppercase font-bold w-full p-3 rounded-lg text-white">
+                       class="bg-[#333340] hover:bg-[#5142FC] transition-colors cursor-pointer uppercase font-bold w-[800px] 2xl:w-[1000px] p-3 rounded-lg text-white">
             </form>
         </div>
     </div>

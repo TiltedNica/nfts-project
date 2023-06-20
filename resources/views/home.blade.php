@@ -7,7 +7,7 @@
 
 
 @section('header_action')
-    <div class="flex flex-col gap-y-[36px] mt-[117px] ms-[255px]">
+    <div class="flex flex-col gap-y-[36px] mt-[117px] 2xl:ms-[255px] ms-[120px]">
         <div>
             <h1 class="text-[56px] font-bold text-white leading-tight">Discover, and collect<br>
                 <span class="text-gradient">extraordinary</span><br>
@@ -40,7 +40,7 @@
 @endsection
 
 @section('main')
-    <div class="flex gap-x-[38px] mt-[28px] justify-center ms-[260px] me-[260px] mb-[80px]">
+    <div class="flex gap-x-[38px] mt-[28px] justify-center  2xl:ms-[260px] 2xl:me-[260px] mb-[80px]">
         <div class="flex flex-col items-center gap-y-[24px] w-[321px]">
             <div class="rounded-[16px] bg-[#5142FC] w-[56px] h-[56px] flex items-center justify-center">
                 <img src="{{asset('img/wallet.svg')}}" alt="">
@@ -82,17 +82,17 @@
 @endsection
 
 @section('auctions')
-    <div class="flex text-white pt-[60px] px-[255px] justify-between items-center">
+    <div class="flex text-white pt-[60px] px-[120px] 2xl:px-[255px] justify-between items-center">
         <h1 class="font-bold text-[36px] leading-[44px]">New Posts</h1>
         <div>
             <a href="{{route('explore.index')}}">Explore more</a>
             <div class="bg-gradient-to-r from-[#E250E5] to-[#4B50E6] h-[1px]"></div>
         </div>
     </div>
-    <div class="flex mt-[32px] ms-[255px] w-[1440px]">
+    <div class="2xl:flex mt-[32px] ms-[120px] 2xl:ms-[255px] 2xl:w-[1440px] w-[1050px]">
             <x-auction-card :items="$items"/>
     </div>
-    <div class="w-[149px] flex ms-[886px] justify-between pb-[74px] mt-[32px]">
+    <div class="w-[149px] flex 2xl:ms-[886px] ms-[570px] justify-between pb-[74px] mt-[32px]">
         <button class="sliderBtn" id="prev">
             <img src="{{asset('img/arrow-left.svg')}}" alt="">
         </button>
@@ -133,7 +133,7 @@
 @endsection
 
 @section('collections')
-    <div class="flex text-white pt-[60px] px-[255px] justify-between items-center">
+    <div class="flex text-white pt-[60px] px-[120px] 2xl:px-[255px] justify-between items-center">
         <h1 class="font-bold text-[36px] leading-[44px]">Popular Collection</h1>
         <div>
             <a href="#">Explore more</a>
@@ -142,7 +142,7 @@
     </div>
 
 
-    <div class="grid-cols-3 grid gap-[30px] ms-[255px] mt-[38px] mb-[80px] w-[1410px]">
+    <div class="2xl:grid-cols-3 grid-cols-2 grid gap-[30px]  ms-[120px] 2xl:ms-[255px] mt-[38px] mb-[80px] 2xl:w-[1410px] w-[1000px]">
         @foreach($collections as $collection)
             <x-collection-card :collection="$collection"/>
         @endforeach
@@ -151,7 +151,7 @@
 @endsection
 
 @section('top_seller')
-    <div class="flex text-white pt-[60px] px-[255px] justify-between items-center">
+    <div class="flex text-white pt-[60px] px-[120px] 2xl:px-[255px] justify-between items-center">
         <h1 class="font-bold text-[36px] leading-[44px]">Top Seller</h1>
     </div>
     <div>
@@ -160,7 +160,7 @@
 @endsection
 
 @section('today_picks')
-    <div class="flex text-white pt-[60px] px-[255px] justify-between items-center">
+    <div class="flex text-white pt-[60px] px-[120px] 2xl:px-[255px] justify-between items-center">
         <h1 class="font-bold text-[36px] leading-[44px]">Today's Picks</h1>
         <div>
             <a href="{{route('explore.index')}}">Explore more</a>

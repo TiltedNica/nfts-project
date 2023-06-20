@@ -1,4 +1,4 @@
-<div class="grid-cols-5 grid ms-[255px] mt-[38px] mb-[80px] w-[1410px]">
+<div class="grid-cols-5 grid ms-[120px] 2xl:ms-[255px] mt-[38px] mb-[80px] w-[1410px]">
     @foreach($user as $info)
         <div class="flex items-center text-white gap-x-[15px] w-[212px]">
             <a href="{{route('items.index', ['user'=>$info->name])}}" class="relative">
